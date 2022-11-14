@@ -1,7 +1,9 @@
-﻿using System.Linq;
+using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using System.Threading;
+using ReadyPlayerMe.Core;
 using UnityEditor.PackageManager;
 
 #if !DISABLE_AUTO_INSTALLER
@@ -86,7 +88,7 @@ namespace ReadyPlayerMe
             var addRequest = Client.Add(name);
             while (!addRequest.IsCompleted)
                 Thread.Sleep(20);
-                    
+            EditorAssetLoader.CreateSettingsAssets();
             if (addRequest.Error != null)
             {
                 Debug.Log("Error: " + addRequest.Error.message);

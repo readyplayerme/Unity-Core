@@ -1,6 +1,6 @@
-using ReadyPlayerMe.Core.Data;
 using UnityEditor;
 using UnityEngine;
+using ReadyPlayerMe.Core.Data;
 
 namespace ReadyPlayerMe.Core.Editor
 {

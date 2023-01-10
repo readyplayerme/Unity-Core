@@ -4,7 +4,7 @@ namespace ReadyPlayerMe.Core.Analytics
 {
     public static class AnalyticsEditorLogger
     {
-        private const string ANALYTICS_LOGGING_ACCEPTED = "AnalyticsLoggingAccepted";
+        private const string ANALYTICS_LOGGING_ACCEPTED = "rpm-sdk-metrics-logging-accepted";
 
         public static readonly IAnalyticsEventLogger EventLogger;
 

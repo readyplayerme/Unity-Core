@@ -22,6 +22,7 @@ namespace ReadyPlayerMe.Core.Editor
         private const string PROGRESS_BAR_TITLE = "Ready Player Me";
         private const string RPM_SCRIPTING_SYMBOL = "READY_PLAYER_ME";
         private const string CORE_MODULE_NAME = "com.readyplayerme.core";
+        
         private const string MODULE_INSTALLATION_SUCCESS_MESSAGE =
             "All the modules are installed successfully. Ready Player Me avatar system is ready to use.";
         private const string MODULE_INSTALLATION_FAILURE_MESSAGE = "Something went wrong while installing modules.";
@@ -180,11 +181,11 @@ namespace ReadyPlayerMe.Core.Editor
 
             if (allModuleInstalled)
             {
-                SDKLogger.Log(TAG, "All the modules are installed successfully. Ready Player Me avatar system is ready to use.");
+                SDKLogger.Log(TAG, MODULE_INSTALLATION_SUCCESS_MESSAGE);
             }
             else
             {
-                SDKLogger.LogWarning(TAG, "Something went wrong while installing modules.");
+                SDKLogger.LogWarning(TAG, MODULE_INSTALLATION_FAILURE_MESSAGE);
             }
         }
     }

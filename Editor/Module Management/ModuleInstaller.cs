@@ -87,6 +87,8 @@ namespace ReadyPlayerMe.Core.Editor
 
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "All modules are installed.", 1);
                 Thread.Sleep(THREAD_SLEEP_TIME);
+                
+                AssetDatabase.Refresh();
             }
 
             EditorUtility.ClearProgressBar();

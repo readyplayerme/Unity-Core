@@ -17,7 +17,7 @@ namespace ReadyPlayerMe.Core.Editor
         private const string ANALYTICS_PRIVACY_TEXT = "Read our Privacy Policy and learn how we use the data <b>here</b>.";
         private const string ANALYTICS_PRIVACY_URL =
             "https://docs.readyplayer.me/ready-player-me/integration-guides/unity/help-us-improve-the-unity-sdk";
-        private const string METRICS_NEVER_ASK_AGAIN = "NeverAskAgain";
+        private const string METRICS_NEVER_ASK_AGAIN = "rpm-sdk-metrics-never-ask-again";
 
         private const string EDITOR_WINDOW_NAME = "allow analytics popup";
         private const string ANALYTICS_CONFIRMATION = "Analytics Confirmation";

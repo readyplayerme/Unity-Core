@@ -88,8 +88,6 @@ namespace ReadyPlayerMe.Core.Editor
 
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "All modules are installed.", 1);
                 Thread.Sleep(THREAD_SLEEP_TIME);
-                
-                AssetDatabase.Refresh();
             }
 
             EditorUtility.ClearProgressBar();
@@ -182,6 +180,7 @@ namespace ReadyPlayerMe.Core.Editor
             if (allModuleInstalled)
             {
                 SDKLogger.Log(TAG, MODULE_INSTALLATION_SUCCESS_MESSAGE);
+                AssetDatabase.Refresh();
             }
             else
             {

@@ -40,22 +40,17 @@ namespace ReadyPlayerMe.Core.Editor
         /// <param name="args">Describes the <c>PackageInfo</c> entries of packages that have just been registered.</param>
         private static void OnRegisteredPackages(PackageRegistrationEventArgs args)
         {
-            
+            Events.registeredPackages -= OnRegisteredPackages;
             // Core Module installed
             if (args.added != null && args.added.Any(p => p.name == CORE_MODULE_NAME))
             {
+                
                 InstallModules();
                 AppendScriptingSymbol();
                 EditorAssetGenerator.CreateSettingsAssets();
             }
-            if (args.added != null && args.added.Any(p => p.name == "com.readyplayerme.avatarloader"))
-            {
-                Events.registeredPackages -= OnRegisteredPackages;
-                CompilationPipeline.RequestScriptCompilation();
-                AssetDatabase.Refresh();
-                Client.Resolve();
-                ValidateModules();
-            }
+            ValidateModules();
+            SDKLogger.Log(TAG, $"OnRegisteredPackages -----");
         }
 
         /// <summary>
@@ -64,6 +59,7 @@ namespace ReadyPlayerMe.Core.Editor
         /// <param name="args">Describes the <c>PackageInfo</c> entries of packages currently registering.</param>
         private static void OnRegisteringPackages(PackageRegistrationEventArgs args)
         {
+            SDKLogger.Log(TAG, $"OnRegisteringPackages -----");
             // Core module uninstalled
             if (args.removed != null && args.removed.Any(p => p.name == "com.readyplayerme.core"))
             {
@@ -97,6 +93,7 @@ namespace ReadyPlayerMe.Core.Editor
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "All modules are installed.", 1);
                 Thread.Sleep(THREAD_SLEEP_TIME);
                 AssetDatabase.Refresh();
+                SDKLogger.Log(TAG, $"Installed module {installedModuleCount}");
             }
             
             EditorUtility.ClearProgressBar();
@@ -137,6 +134,8 @@ namespace ReadyPlayerMe.Core.Editor
         /// <returns>A boolean <c>true</c> if the module is installed.</returns>
         public static bool IsModuleInstalled(string name)
         {
+            SDKLogger.Log(TAG, $"IsModuleInstalled {name}");
+
             return GetPackageList().Any(info => info.name == name);
         }
 
@@ -183,6 +182,7 @@ namespace ReadyPlayerMe.Core.Editor
                 if (packageList.All(x => x.name != module.name))
                 {
                     allModuleInstalled = false;
+                    SDKLogger.Log(TAG, $"Module {module.name} not found");
                 }
             }
 
@@ -198,6 +198,7 @@ namespace ReadyPlayerMe.Core.Editor
             {
                 SDKLogger.LogWarning(TAG, MODULE_INSTALLATION_FAILURE_MESSAGE);
             }
+            SDKLogger.Log(TAG, "Validate modules run");
         }
     }
 }

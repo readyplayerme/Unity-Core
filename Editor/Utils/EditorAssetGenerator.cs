@@ -23,7 +23,7 @@ namespace ReadyPlayerMe.Core.Editor
 
             AssetDatabase.CreateAsset(partnerSubdomainSettings, $"Assets/{SETTINGS_SAVE_FOLDER}/{PARTNER_SUB_DOMAIN_ASSET_NAME}");
             AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            //AssetDatabase.Refresh();
         }
     }
 }

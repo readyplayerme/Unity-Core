@@ -51,13 +51,6 @@ namespace ReadyPlayerMe.Core.Editor
             }
             ValidateModules();
             SDKLogger.Log(TAG, $"OnRegisteredPackages -----");
-            
-            if (args.removed != null && args.removed.Any(p => p.name == "com.readyplayerme.avatarloader"))
-            {
-                CompilationPipeline.RequestScriptCompilation();
-                AssetDatabase.Refresh();
-                Client.Resolve();
-            }
         }
 
         /// <summary>
@@ -100,7 +93,6 @@ namespace ReadyPlayerMe.Core.Editor
 
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "All modules are installed.", 1);
                 Thread.Sleep(THREAD_SLEEP_TIME);
-                AssetDatabase.Refresh();
                 SDKLogger.Log(TAG, $"Installed all modules ");
             }
             
@@ -197,7 +189,9 @@ namespace ReadyPlayerMe.Core.Editor
             if (allModuleInstalled)
             {
                 SDKLogger.Log(TAG, MODULE_INSTALLATION_SUCCESS_MESSAGE);
+                CompilationPipeline.RequestScriptCompilation();
                 AssetDatabase.Refresh();
+                Client.Resolve();
             }
             else
             {

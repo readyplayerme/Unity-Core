@@ -40,7 +40,7 @@ namespace ReadyPlayerMe.Core.Editor
         /// <param name="args">Describes the <c>PackageInfo</c> entries of packages that have just been registered.</param>
         private static void OnRegisteredPackages(PackageRegistrationEventArgs args)
         {
-            Events.registeredPackages -= OnRegisteredPackages;
+            
             // Core Module installed
             if (args.added != null && args.added.Any(p => p.name == CORE_MODULE_NAME))
             {
@@ -48,7 +48,14 @@ namespace ReadyPlayerMe.Core.Editor
                 AppendScriptingSymbol();
                 EditorAssetGenerator.CreateSettingsAssets();
             }
-            ValidateModules();
+            if (args.added != null && args.added.Any(p => p.name == "com.readyplayerme.avatarloader"))
+            {
+                Events.registeredPackages -= OnRegisteredPackages;
+                CompilationPipeline.RequestScriptCompilation();
+                AssetDatabase.Refresh();
+                Client.Resolve();
+                ValidateModules();
+            }
         }
 
         /// <summary>

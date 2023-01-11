@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEditor;
+using UnityEditor.Compilation;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
@@ -57,7 +58,7 @@ namespace ReadyPlayerMe.Core.Editor
         private static void OnRegisteringPackages(PackageRegistrationEventArgs args)
         {
             // Core module uninstalled
-            if (args.removed != null && args.removed.Any(p => p.name == "com.readyplayerme.core"))
+            if (args.removed != null && args.removed.Any(p => p.name == CORE_MODULE_NAME))
             {
                 // Remove modules that depend on core here, or not?
             }

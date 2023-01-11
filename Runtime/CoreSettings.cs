@@ -1,12 +1,12 @@
-﻿using ReadyPlayerMe.Core.Data;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
+using ReadyPlayerMe.Core.Data;
 
 namespace ReadyPlayerMe.Core
 {
     public static class CoreSettings
     {
-        public const string SETTINGS_PATH = "Settings/PartnerSubDomainSettings";
+        public const string SETTINGS_PATH = "Settings/PartnerSubdomainSettings";
 
         public static PartnerSubdomainSettings PartnerSubdomainSettings
         {

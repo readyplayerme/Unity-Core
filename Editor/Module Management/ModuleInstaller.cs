@@ -86,6 +86,7 @@ namespace ReadyPlayerMe.Core.Editor
                 foreach (ModuleInfo module in missingModules)
                 {
                     var progress = installedModuleCount++ / missingModules.Length;
+                    SDKLogger.Log(TAG, $"Installing module {module.name}");
                     EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, $"Installing module {module.name}", progress);
                     AddModuleRequest(module.Identifier);
                 }
@@ -93,7 +94,7 @@ namespace ReadyPlayerMe.Core.Editor
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "All modules are installed.", 1);
                 Thread.Sleep(THREAD_SLEEP_TIME);
                 AssetDatabase.Refresh();
-                SDKLogger.Log(TAG, $"Installed module {installedModuleCount}");
+                SDKLogger.Log(TAG, $"Installed all modules ");
             }
             
             EditorUtility.ClearProgressBar();

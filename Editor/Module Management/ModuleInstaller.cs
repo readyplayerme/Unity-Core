@@ -181,6 +181,7 @@ namespace ReadyPlayerMe.Core.Editor
             if (allModuleInstalled)
             {
                 SDKLogger.Log(TAG, MODULE_INSTALLATION_SUCCESS_MESSAGE);
+                CompilationPipeline.RequestScriptCompilation();
                 AssetDatabase.Refresh();
             }
             else

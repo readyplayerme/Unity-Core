@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEditor;
+using UnityEditor.Compilation;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
@@ -89,6 +90,7 @@ namespace ReadyPlayerMe.Core.Editor
                 EditorUtility.DisplayProgressBar(PROGRESS_BAR_TITLE, "All modules are installed.", 1);
                 Thread.Sleep(THREAD_SLEEP_TIME);
                 AssetDatabase.Refresh();
+                CompilationPipeline.RequestScriptCompilation();
             }
             
             EditorUtility.ClearProgressBar();
@@ -181,7 +183,6 @@ namespace ReadyPlayerMe.Core.Editor
             if (allModuleInstalled)
             {
                 SDKLogger.Log(TAG, MODULE_INSTALLATION_SUCCESS_MESSAGE);
-                CompilationPipeline.RequestScriptCompilation();
                 AssetDatabase.Refresh();
             }
             else
